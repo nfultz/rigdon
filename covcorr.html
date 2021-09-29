@@ -1,0 +1,88 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<HTML>
+
+<HEAD>
+<TITLE>Covariances vs. Pearson Correlations</TITLE>
+<META NAME="GENERATOR" CONTENT="Internet Assistant for Word 1.00">
+<META NAME="AUTHOR" CONTENT="Edward E. Rigdon">
+</HEAD>
+
+<BODY>
+<H1>Covariances vs. Pearson Correlations</H1>
+SEM is also known as "analysis of covariance structuress."  Does this mean that SEM analysis should always be conducted with covariance matrices, or can (Pearson) correlation matrices serve just as well?  Here are some edited remarks from SEMNET subscribers (errors are <A HREF="MAILTO:erigdon@gsu.edu">mine</A>)<P>
+
+<ADDRESS>James Steiger writes:</ADDRESS>
+Whether or not you should use covariances depends (a) on the specific question you wish to ask, and (b) the software you are using.<P>
+
+(a)  If, for example, your statistical question is not "scale free," i.e., depends directly on the scale of the measurements, then you may be restricted to examining covariances.<P>
+
+<ADDRESS>Ed Rigdon explains:</ADDRESS>
+<BLOCKQUOTE>Suppose you have a model which includes a <A HREF="http://www.gsu.edu/~mkteer/sem2.html#latentvar">latent construct</A> that has only one measure.  Then, typically, one must either fix the <A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#measerr">error variance</A> for that measure to a particular value, to reflect the proportion of the measure's variance that is due to error.  If you choose a value other than zero, then the value you choose will depend on the variance, or scale, of the measure in question.  If you change the scale of the measure, by going from covariance to correlations or vice versa, then the value you chose becomes incorrect.  Thus, your model is no longer "scale free."</BLOCKQUOTE>
+
+On the other hand, if your question is framed in a scale free fashion, then you may, in fact, be better off examining correlations.  An example of the latter occurs in the context of factor analysis, where people nearly always factor a correlation matrix.<P>
+
+(b)  Classical SEM statistical theory is based on the distributional properties of the elements of a covariance matrix.  Unfortunately, covariance and correlation matrices have different distributional properties, so if you use theory based on a covariance matrix to analyze a correlation matrix, you can have problems.  If you input a correlation matrix as if it were a covariance matrix, and "fool" your software, you will almost certainly get wrong standard errors. This was the subject of a <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html">Psychological Bulletin</A> article by Bob Cudeck.<P>
+
+<ADDRESS>David Ronis provided the cite:</ADDRESS>
+<BLOCKQUOTE>Cudeck, R. (1989).  Analysis of correlation matrices using covariance structure models.  Psychological Bulletin, 105, 317-327.</BLOCKQUOTE>
+
+<ADDRESS>Jim Steiger earlier pointed to a demonstration of this problem:</ADDRESS>
+<BLOCKQUOTE><A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#LawMax">Lawley and Maxwell</A> give parameter estimates for a confirmatory factor analysis in chapter 7 of their book.  Their Table 7.9 gives the parameter estimates to two decimals.  Their Table 7.10 gives correct standard errors, along with the incorrect standard errors obtained when theory applicable for a covariance matrix is applied to their correlation matrix. Their model is a confirmatory factor model.  You will notice that the ratio of the incorrect to correct standard errors exceeds 2 to 1 in several cases, and consequently "T-statistics" for such parameters would be off by a factor of 2.</BLOCKQUOTE>
+
+Some software is set up to provide correct standard errors whether a correlation matrix or a covariance matrix is analyzed. These programs include my own <A HREF="HTTP://www.gsu.edu/~mkteer/software.html">SEPATH</A> (part of Statistica for Windows) and <A HREF="HTTP://www.gsu.edu/~mkteer/software.html">RAMONA</A> by Michael Browne, part of SYSTAT 6.  Other software, such as <A HREF="HTTP://www.gsu.edu/~mkteer/software.html">LISREL</A> and <A HREF="HTTP://www.gsu.edu/~mkteer/software.html">EQS</A>, do not produce the correct standard errors by default, and may require some additional programming.<P>
+
+<ADDRESS>In this regard, Alain Marcharnd passed along a note from Leo Stam, of Scientific Software, which distributes <A HREF="HTTP://www.gsu.edu/~mkteer/software.html">LISREL</A>, demonstrating how to obtain correct standard errors from the analysis of correlation matrices:</ADDRESS>
+I first give the Steiger example producing the "wrong" standard errors in LISREL syntax:<P>
+
+<BLOCKQUOTE>Lawley Factor Analysis Example. "Wrong" standard errors.<BR>
+DA NI=9 NO=72 MA=KM<BR>
+LA<BR>
+VIS_PERC CUBES LOZENGES PAR_COMP SEN_COMP WRD_MNG ADDITION CNT_DOT ST_CURVE<BR>
+KM=LAWLEY.COR<BR>
+MO NX=9 NK=3 PH=ST<BR>
+LK<BR>
+Visual Verbal Speed<BR>
+FR LX 1 1 LX 2 1 LX 3 1 LX 4 2 LX 5 2 LX 6 2 LX 7 3 LX 8 3 LX 9 1 LX 9 3<BR>
+OU</BLOCKQUOTE>
+
+Next is the command file that produces the "correct" standard errors.<P>
+<BLOCKQUOTE>Lawley Factor Analysis Example. Correct standard errors.<BR>
+DA NI=9 NO=72 MA=KM<BR>
+LA<BR>
+VIS_PERC CUBES LOZENGES PAR_COMP SEN_COMP WRD_MNG ADDITION CNT_DOT ST_CURVE<BR>
+KM=LAWLEY.COR<BR>
+MO NY=9 NE=9 NK=3 LY=DI,FR GA=FI PH=ST PS=DI TE=ZE<BR>
+LK<BR>
+Visual Verbal Speed<BR>
+FR GA 1 1 GA 2 1 GA 3 1 GA 4 2 GA 5 2 GA 6 2 GA 7 3 GA 8 3 GA 9 1 GA 9 3<BR>
+CO PS 1 1 = 1 - GA 1 1 ** 2<BR>
+CO PS 2 2 = 1 - GA 2 1 ** 2<BR>
+CO PS 3 3 = 1 - GA 3 1 ** 2<BR>
+CO PS 4 4 = 1 - GA 4 2 ** 2<BR>
+CO PS 5 5 = 1 - GA 5 2 ** 2<BR>
+CO PS 6 6 = 1 - GA 6 2 ** 2<BR>
+CO PS 7 7 = 1 - GA 7 3 ** 2<BR>
+CO PS 8 8 = 1 - GA 8 3 ** 2<BR>
+CO PS 9 9 = 1 - GA 9 1 ** 2 - GA 9 1 * GA 9 3 - GA 9 3 ** 2<BR>
+OU SO</BLOCKQUOTE>
+
+The factor loadings with the standard errors can now be found in the <A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#gammabeta">Gamma</A> matrix. You may want to check that the fit indices for these two different formulations of the same exploratory factor analysis model are the same.<P>
+
+<ADDRESS>James Steiger concludes:</ADDRESS>
+So really, succinctly speaking, there are two questions you have to answer.  One involves the limitations imposed by the statistical question you are asking, the other involves the limitations imposed by the software you are using.<P>
+
+<ADDRESS>On this point, David Kaplan adds:</ADDRESS>
+I agree with Jim and simply wish to add that one is always on safe ground by analyzing the covariance matrix and asking for the standardized solution.  This is also true for <A HREF="HTTP://www.gsu.edu/~mkteer/multisam.html">multi-sample modeling</A> where one would want to examine solutions standardized to a common metric.  This issue is discussed in the LISREL manual.<P>
+
+<ADDRESS>Ed Rigdon adds:</ADDRESS>
+Modeling  <A HREF="HTTP://www.gsu.edu/~mkteer/nonlin.html">nonlinear and interaction</A> relationships between latent variables also requires the use of covariances instead of correlations.  This class of models involves variables that are the products of other variables.  Even if the original variables had unit variance, the product will not, unless the original variables are uncorrelated.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/covcorr.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  April 29, 1996</ADDRESS>
+
+</BODY>
+
+</HTML>

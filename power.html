@@ -1,0 +1,84 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<HTML>
+
+<HEAD>
+
+<TITLE>Statistical Power in Structural Equation Modeling</TITLE>
+
+<META NAME="AUTHOR" CONTENT="David Kaplan">
+
+</HEAD>
+
+<BODY>
+<H1>Statistical Power in Structural Equation Models</H1>		
+<H2><A HREF="HTTP://www.udel.edu/dkaplan/">David Kaplan</A><BR>
+Department of Educational Studies<BR>
+University of Delaware</H2>
+
+The concept of power in statistical theory is defined as the probability of rejecting the null hypothesis given that the null hypothesis is false.
+In the context of structural equation modeling, the null hypothesis is defined by the specification of fixed and free elements in relevant parameter matrices of the model equations.  The specification of fixed and free elements represents the researchers' initial hypothesis concerning the putative direct and/or indirect effects among the latent variables.  The null hypothesis is assessed by forming a <A HREF="HTTP://www.gsu.edu/~mkteer/discrep.html">discrepancy function</A> between the model-implied set of moments (mean vector and/or covariance matrix) and the sample moments.  Various discrepancy functions can be formed depending on the particular minimization algorithm being used (e.g. maximum likelihood), but the goal remains the same - namely to derive a test statistic that has a known distribution, and then compare the obtained value of  the test statistic against tabled values in order to render a decision vis-a-vis the null hypothesis.<P>
+
+In the framework of structural equation modeling the assessment of power is complicated. Unlike simple procedures such as the t-test or ANOVA wherein alternative hypotheses pertain to only a few parameters, in structural equation modeling there are considerably more parameters.  Each fixed parameter in the model is potentially false and each can take on, in principle, an infinite number of alternative values.  Thus, each fixed parameter needs to be evaluated, in principle, one at a time.<P>
+	
+	A method for evaluating the power of the likelihood ratio test in structural equation modeling was developed by <A HREF="#refs">Satorra and Saris (1985)</A>.
+Their method can be outlined as follows.  First, estimate the model of interest.  Second, choose a fixed parameter whose power is desired.
+Third, re-estimate the initial model with each estimated parameter fixed at their estimated value and choose an "alternative" fixed value for the parameter of interest.   Note that if the null hypothesis is true for that parameter, then the likelihood ratio chi-square for the model would be zero with degrees-of-freedom equaling the degrees-of-freedom of the model.    If the null hypothesis is false for that parameter, then the likelihood ratio chi-square will be some positive number reflecting the specification error incurred by fixing that parameter to the value chosen in the initial model.  This number is the noncentrality parameter
+(NCP) of the <A HREF="HTTP://www.gsu.edu/~mkteer/continuo.html">noncentral chi-square distribution</A>, which is the distribution of the test statistic when the null hypothesis is false.
+This number can be compared to tabled values of the noncentral chi-square distribution to assess power.<P>
+
+	Clearly, the method originally proposed by <A HREF="#refs">Satorra and Saris
+(1985)</A> would be tedious to carry out in practice.  Recently, <A HREF="#refs">Satorra
+(1989)</A> recognized that the modification indices (in LISREL) or the
+Lagrange multiplier tests (in EQS) are actually one degree-of-freedom noncentrality parameters.  Thus, for any estimated model, it is a simple matter to look at these indices in relation to tabled values of the noncentral chi-square distribution in order to assess power.  It should be noted that power can be assessed for free parameters as well.  That is, the square of the T-value (in LISREL) or the Wald test (in EQS) can be used to assess the power of an estimated parameter in the model, against a null hypothesis that the value of the parameter is zero.<P>
+
+	Consideration of the power associated with the likelihood ratio test (or other asymptotically equivalent tests) led to an approach for conducting model modification.  Specifically, <A HREF="#refs">Saris, Satorra, and S&#246;rbom
+(1987)</A> advocated a combination of the modification index and the expected change statistic (EC) to guide model modifications.  The EC is an estimate of the value that a fixed parameter will take if that parameter is freed.
+Thus it represents the "distance" between the value of the parameter under the null hypothesis (usually zero) and the value of the parameter under the alternative hypothesis.  Therefore, with the modification index (NCP) and EC in hand one has all the ingredients to engage in model modification with an eye toward power considerations.  This power-based approach to model modification was advocated by <A HREF="#refs">Kaplan (1990</A>, with subsequent commentary).<P>
+
+Under the approach advocated by <A HREF="#refs">Kaplan (1990)</A> and <A HREF="#refs">Saris, Satorra, and
+S&#246;rbom (1987)</A> parameters with large MIs and large ECs should be freed first provided it makes substantive sense to do so because these parameters are associated with higher probabilities  of being false.
+Parameters associated with large MIs and small ECs need to be studied carefully because, as shown by <A HREF="#refs">Kaplan (1989)</A>, this might reflect a sample size sensitivity problem.  Parameters associated with small MIs and large
+ECs also need to be studied carefully in that it may also reflect a sample size problem.  Nevertheless, there may be substantive value in re-estimating the model with this parameter freed because of the large contribution it would be expected to make.  Finally, parameters associated with small MIs and small ECs could be ignored.  Note that relative comparisons across parameters can be made by employing standardized or completely standardized ECs <A HREF="#refs">(see Kaplan, 1989; Chou and Bentler, 1990)</A>.<P>
+
+With the advent of multivariate methods of model modification (see e.g.
+<A HREF="#refs">Bentler, 1992</A>) the question naturally arises how this might pertain to assessing power in more than one parameter simultaneously.  <A HREF="#refs">Saris,
+Satorra, and S&#246;rbom (1987)</A> recognized that power of two parameters of equal "true value" can differ depending on the location of the parameters in the model.  That is, if two parameters have the same true alternative value, the power associated with each may be different because of their different statistical associations with other parameters in the model.  The mechanism underlying these associations pertain to the pattern of zero and non-zero values in the covariance matrix of the parameter estimates.
+This matrix and its role in specification error and power have been discussed recently in <A HREF="#refs">Kaplan and Wenger (1993)</A>.  Suffice to say that multivariate methods of model modification can, in some specific cases, lead one to miss the subtle changes that can take place in the underlying system of relationships that can be observed by a univariate approach to model modification.  Thus, while it is true that using multivariate methods minimizes Type II (or Type I) errors incurred by model modification relative to univariate approaches, one does so at the expense of monitoring subtle changes that might impact the substantive interpretation of the model.<P>
+
+Finally, an issue of some practical importance is the role that power plays in multiple group structural equation modeling.  Recently, <A HREF="#refs">Kaplan and George (1995)</A> studied power in the multiple group confirmatory factor analysis setting.  Specifically, <A HREF="#refs">Kaplan and George (1995)</A> examined the power of the Wald test of factor mean differences under violations of factorial invariance.  Using an approach similar to that used in power studies of Hotelling's T-square, <A HREF="#refs">Kaplan and George (1995)</A> found that power was most affected by the degree of true factor mean differences.  The size of the model was also found to affect the power of the test with larger models giving rise to increased power.  Finally, with equal sample sizes,
+<A HREF="#refs">Kaplan and George (1995)</A> found that the power of  the Wald test of factor mean differences is relatively robust to violations of factorial invariance.  With unequal sample sizes, large changes in the power of the test were observed even under conditions of factorial invariance.<P>
+
+When framed in terms of decisions errors, the results of <A HREF="#refs">Kaplan and George
+(1995)</A> suggest that the marginal effect of non-invariance was to decrease the probability of Type II errors.  In contrast, the marginal effect of inequality of sample size was to increase Type II errors.  <A HREF="#refs">Kaplan and
+George (1995)</A> concluded with practical guidelines suggesting that if the hypothesis of factor mean differences was rejected under conditions of unequal sample size, then it was probably the case that the null hypothesis was false.  On the other hand, if the hypothesis was not rejected, then it could be the effect of unequal sample sizes, lack of substantively large differences, or both.<P>
+
+<A NAME="refs"></A><H2>References</H2>
+
+Chou, C.-P., & Bentler, P. M. (1990).  Model modification in covariance structure modeling:  A comparison among likelihood ratio, Lagrange multiplier, and Wald tests.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#MBR">Multivariate Behavioral Research</A>, 25, 115-136.<P>
+
+Kaplan, D. (1989a).  Model modification in covariance structure analysis:  Application of the expected parameter change statistic.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#MBR">Multivariate Behavioral Research</A>, 24, 285-305.<P>
+
+Kaplan, D. (1995).  Statistical power in structural equation modeling.   In R. H. Hoyle (ed.), <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html">Structural Equation Modeling:  Concepts, Issues,  and Applications</A>  (pp. 100-117).  Newbury Park, CA:  Sage Publications, Inc.<P>
+
+Kaplan, D., & George, R.  A study of the power associated with testing factor mean differences under violations of factorial invariance.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#SEMAMJ">Structural Equation Modeling:  A Multidisciplinary Journal</A>, 2, 101-118.
+
+Kaplan, D., & Wenger, R. N. (1993).  Asymptotic independence and separability in covariance structure models:  Implications for specification error, power, and model modification.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#MBR">Multivariate Behavioral Research</A>, 28, 483-498.<P>
+
+Saris, W. E., & Satorra, A. (1987).  Characteristics of structural equation models which affect the power of the likelihood ratio test.  In W. E. Saris & I. N. Gallhofer (Eds.), Sociometric research (Vol. 2).  London:  Macmillan.<P>
+
+Saris, W. E., Satorra, A., & S&#246;rbom, D. (1987).  The detection and correction of specification errors in structural equation models.  In C. C. Clogg (Ed.), <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#SocMeth">Sociological methodology</A> (pp. 105-129).  San Francisco:  Jossey-Bass.<P>
+
+Satorra, A. (1989).  Alternative test criteria in covariance structure analysis:  A unified approach.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html">Psychometrika</A>, 54, 131-151.<P>
+
+Satorra, A., & Saris, W. E. (1985).  Power of the likelihood ratio test  in covariance structure analysis.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html">Psychometrika</A>, 50, 83-90.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/power.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  September 18, 1996</ADDRESS>
+
+
+</BODY>
+
+</HTML>

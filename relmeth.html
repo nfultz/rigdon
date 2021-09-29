@@ -1,0 +1,154 @@
+<HTML>
+<HEAD>
+<title>Methodological Alternatives to SEM/CFA</title>
+</HEAD>
+<BODY>
+<h1>Methodological Alternatives to SEM/CFA</h1>
+
+While structural equation modeling (SEM), based on a confirmatory factor analysis (CFA) measurement model, is a very general methodology, it is not the solution to every problem.  Here are some methodologies that are "related" to SEM and CFA, but which are appropriate to rather different research problems.<p>
+
+<TABLE BORDER>
+     <TR>
+          <TH><H2>Alternatives to SEM</H2></TH>
+          <TH><H2>Alternatives to CFA</H2></TH>
+     </TR>
+     <TR>
+          <TD><A HREF="#pls">Partial Least Squares (PLS)</A><BR><BR></TD>
+          <TD><A HREF="#efa">Exploratory Factor Analysis</A><BR><BR></TD>
+     </TR>
+     <TR>
+          <TD><A HREF="#tetrad">Tetrad Analysis</A><BR><BR></TD>
+          <TD><A HREF="#ufa">Unrestricted Factor Analysis</A><BR><BR></TD>
+     </TR>
+     <TR>
+          <TD><A HREF="#lca">Latent Class Analysis</A><BR><BR></TD>
+          <TD><A HREF="#irt">Item Response Theory (IRT)</A><BR><BR></TD>
+     </TR>
+     <TR>
+          <TD><BR><BR></TD>
+          <TD><A HREF="#pca">Principal Components Analysis (PCA)</A><BR><BR></TD>
+     </TR>
+     <TR>
+          <TD><BR><BR></TD>
+          <TD><A HREF="#formative">Formative (or "Causal") Indicators</A><BR><BR></TD>
+     </TR>
+</TABLE>
+
+<H2><A NAME="pls">Partial least squares</A></H2>
+
+Partial least squares (PLS) was invented by Herman Wold (mentor to Karl J&#246;reskog, a founder of SEM), as an analytical alternative for situations where theory is weak and where the available manifest variables or measures would likely not conform to a rigorously specified measurement model.  For these reasons, Wold labeled his approach, "soft modeling."  In recent years, active PLS researchers, including Wold's son, Svante, and Fred Bookstein, have developed and even redefined PLS, so there is room for some confusion.  The material presented here adheres most closely to Wold's original formulation, but it is generally applicable to the other forms, as well.<P>  Rather than using the factor analytic measurement model associated with SEM, PLS more often uses a principal components measurement model, where the "latent constructs" are defined as linear composites of the measures associated with them.  In restricted cases, these linear composites are equivalent to principal components.<P>
+Also, rather than seek overall optimization in parameter estimates through a full information estimation technique (such as maximum likelihood), Wold opted for limited information methods that provide statistically inferior estimates but which make minimal demands on the data.  Thus, PLS may represent a <B>pragmatic</B> alternative to SEM.  In addition, the PLS method is designed to maximize prediction rather than fit.  That is, the method is optimized to maximize the proportion of variance of the dependent "construct" that is explained by the predictor "constructs."  SEM, by contrast, is designed to maximize and then test the degree of consistency between model and data.<P>
+While many researchers are devoted to PLS as a practical method, others find it objectionable.  Some argue that the statistical properties of the method are not well understood, and that PLS users rely too much on mere assertions that are not supported by rigorous analysis.  Other researchers argue that the "latent constructs" in PLS are not really "latent" at all, since they are strict linear composites of observed variables.<P>
+For more information about PLS, see <A HREF="HTTP://www.ucalgary.ca/~chin/PLSINTRO.HTM">Wynne Chin's PLS Web site</A> or <A HREF="HTTP://www.gsu.edu/~mkteer/relmeth.html#Refs">Wynne's overview chapter</A> in <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Marcou98">Marcoulides (1998)</A>.  <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#FalkMiller">Falk and Miller's (1992)</A> short text provides a readable introduction to the practice and philosophy of PLS.  <A HREF="HTTP://www.gsu.edu/~mkteer/relmeth.html#Refs">McDonald's (1996)</A> paper is a fascinating look at exactly how PLS and SEM differ, and showing how standard SEM programs can be used to mimic PLS estimation methods.<p>
+You can download PLS-PC, perhaps the most widely known PLS program, from <A HREF="HTTP://kiptron.psyc.virginia.edu:80/jack_mcardle/">Jack McArdle's</A> web site.<P>
+
+<H2><A NAME="tetrad">Tetrad analysis</A></H2>
+<ADDRESS>(This section is essentially taken from Bollen & Ting 1993, Ting 1995, and Spirtes, Glymour and Scheines 1993.)</ADDRESS>
+While structural equation modeling works generally at the level of variances and covariances, tetrad analysis works with relations between sets of four covariances at once.  A tetrad (from the Greek word for "four") for four variables <I>g, h, i, j</I> is defined as:<P>
+
+<IMG WIDTH=247 HEIGHT=32 SRC="HTTP://www.gsu.edu/~mkteer/tetrad.gif"><P>
+
+where <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmalc.gif"> indicates, of course, the covariance between the subscripted variables.  A tetrad that is equal to 0 is called a "vanishing tetrad."<P>
+
+Tetrad analysis actually encompasses two very different methodologies.  Confirmatory tetrad analysis (<A HREF="#refs">Bollen & Ting 1993</A>) evaluates a proposed structural equation model by determining whether the vanishing tetrads implied by the model are really present, within sampling error. Spirtes, Glymour and Scheines' (1993) TETRAD II package <STRONG>explores</STRONG> a covariance matrix, looking for models that are consistent with it.  Thus, their work presents an exception to the generally confirmatory character of SEM.<P>
+
+Confirmatory tetrad analysis may be useful to researchers who are facing <A HREF="HTTP://www.gsu.edu/~mkteer/identifi.html">identification</A> problems.  A structural equation model that is not identified in terms of its parameters may still be identified in terms of vanishing tetrads.  So a researcher may be able to derive fit information for the model based on tetrad analysis.  In addition, two models that are not nested in terms of their parameters may be nested in terms of vanishing tetrads.  That is, one model may imply a set of vanishing tetrads that is a subset of those implied by the other model, facilitating a comparative analysis of the two models.  However, performing this tetrad analysis by hand is tricky.  Many of the tetrads implied by a model will be redundant with other tetrads, but an analysis must be based on a unique set.  It can be difficult to determine which tetrads are unique.  Ting (1995) describes a SAS macro, called CTA-SAS, which performs this analysis.  The <A HREF="FTP://ftp.cuhk.hk/pub/contrib/cta-sas.prg">program</A> and <A HREF="FTP://ftp.cuhk.hk/pub/contrib/cta-sas.doc">documentation</A> are available via ftp.<P>
+
+The exploratory tools developed by Spirtes, et al. may be useful to modelers facing a covariance matrix with little prior information.  Indeed, some related work by Glymour and others has appeared in the literature on "data mining," a field which deals with the increasingly common situation of an analyst being overwhelmed by the quantity of available data.<P>
+
+However, these tools may also be useful in a confirmatory context.  Researchers may wish to evaluate fit information for one model in light of fit information for other models.  If many models fit a data set well, then the good fit of one model would seem to offer less compelling evidence in favor of the theory that inspired the model.  This procedure might also be sued to find <A HREF="HTTP://www.gsu.edu/~mkteer/equival.html">equivalent models</A> empirically.<P>  Spirtes et al. have suggested that augmenting "traditional" SEM analysis with their exploratory approach is more likely to produce the "true" model for a data set (if one exists) than is SEM analysis by itself.<P>
+
+In their work, Spirtes et al. use a distinctive, graphically oriented language.  A link between two constructs or variables is called an "edge."  If the link represents a covariance between the two, it is called an "undirected edge";  otherwise, it is called a "directed edge."  Depending on the algorithm used, TETRAD II may begin with a model where all variables are correlated (an "undirected graph") and then proceed to eliminate edges where possible and turn undirected edges into directed edges.  The result is a "partially direct acyclic graph" which fits the data set to a tolerance specified by the user.  The word "acyclic" indicates that the resulting model will not involve reciprocal or feedback relations--a limitation of the method.<P>.
+
+<H2><A NAME="latclass">Latent class models</A></H2>
+
+Latent class analysis (LCA) is appropriate when the dependent variable is intrinsically categorical--that is, when it boils down to distinguishing between those who take an action and those who do not, or between those who vote for different political candidates.  In SEM, ordinal measures may be used to reflect continuous latent variables, but in LCA both the measure and the underlying latent variable are categorical.  For more information, see <A HREF="HTTP://members.aol.com/KMarkus/lca.html">Keith Markus' LCA Web site</A>, or <A HREF="HTTP://www.gsu.edu/~mkteer/relmeth.html#Refs">Karen Schmidt McCollam's overview chapter</A> in <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Marcou98">Marcoulides (1998)</A>.<P>
+
+<H2><A NAME="efa">Exploratory factor analysis</A></H2>
+
+<H2><A NAME="ufa">Unrestricted factor analysis</A></H2>
+
+<ADDRESS>(This section consists of edited SEMNET comments from Stan Mulaik.)</ADDRESS><P>
+
+Researchers can use unrestricted factor analysis to test only the hypothesis that relations between a set of measures can be explained by a certain number of common factors, without specifying a particular factor structure.  This allows the researcher to determine whether <VAR>any</VAR> p-factor model will provide acceptable fit.  If this hypothesis fails, then there is no point in testing more constrained CFA models.<P>
+The unrestricted model was described by Karl J&#246;reskog in an addendum to a reprint of the first paper on confirmatory factor analysis that appeared in <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#Psychometrika">Psychometrika</A> in 1972.  This addendum is to be found in:<P>
+J&#246;reskog, K. G. & S&#246;rbom, D. (1979), In Jay Magidson (Ed.), <VAR>Advances in Factor Analysis and Structural Equation Models</VAR>. Cambridge, MA: Abt Books.<P>
+On pp.40-43, J&#246;reskog describes how to specify an unrestricted model for k factors:
+<UL>
+<LI>Fix the k variances of the latent common factors to unity, and free the covariances between the common factors.
+<LI>For each factor, pick a manifest variable that one expects to have the highest or near highest loading on that 
+<LI>factor.  Free its loading in the factor loading matrix.  Fix the k - 1 remaining loadings of that variable on the remaining factors to 0.  You will now have k rows of Lambda with k - 1 zeros in each of them
+<LI>Free all remaining loadings.
+</UL>
+For a model with two factors and four measures per factor, the factor covariance and loading matrices should look like this (where 0 indicates an element fixed to 0 and ? indicates a parameter to be estimated):<P>
+<PRE>
+      ?  0
+      ?  ?
+      ?  ?
+      ?  ?
+      0  ?
+      ?  ?
+      ?  ?             1
+      ?  ?             ?  1
+     Lambda            Phi
+</PRE>
+Experience has shown that a problem you may have with convergence will be cleared up with good starting values.  Use an exploratory factor analysis as the basis for picking what variables to choose to specify the above model and use the corresponding parameter values as starting values for iterations.  The result will fit as well as a two-factor exploratory factor analysis estimated in the same way.<P>
+
+An alternative method for specifying the above model is to free all elements of Phi while fixing the supposed highest loading item on a factor to unity and its loading on the other factors to zero.  This is often the way to proceed in doing multiple group analyses where you want to set the metric without explicitly fixing the variances of the common factors so they can differ across groups while the Lambda loadings are constrained to be equal across groups.<P>
+
+If you decide that k is the number of factors, then you can impose additional restrictions on the loadings (e.g. setting some to zero) to specify a measurement model.  The measurement model may not fit, and you might then use modification indicies to free up zero loadings, one at a time, to get an optimal measurement model (at the expense of lost degrees of freedom).<P>
+
+Once you have a good measurement model, you can then test your structural model involving relations between latent variables.<P>
+
+<ADDRESS>As Roger Millsap later pointed out, in a message to SEMNET:</ADDRESS><P>
+
+In the addendum, J&#246;reskog attempted to lay out sufficient conditions for "<A HREF="HTTP://www.gsu.edu/~mkteer/identify.html">identification</A>" in factor analysis through fixing various loadings to zero or nonzero values.  Jo&#246;reskog himself noted in a later paper that these conditions were not sufficient in general to identify the model, and were only sufficient to achieve rotational uniqueness.  This is all contained in the paper:<P>
+Bollen & J&#246;reskog (1985), Uniqueness does not imply identification.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#smr">Sociological Methods and Research</A>, 14, 155-163.<P>
+The distinction is also mentioned in <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Bollen89">Bollen's (1989)</A> text.  I was also not fully aware of the distinction until a few years ago when I was writing a paper on identification in MTMM factor models, and found the above paper.   The basic point is that using J&#246;reskog's restrictions, one can show that they are sufficient to define a unique rotational position for the factors.  They are not sufficient in general to define a unique solution for ALL of the factor model parameters however, which include the unique variances as well as the loadings and common factor covariances.<P>
+
+<ADDRESS>Stan Mulaik then asked whether a UFA solution would be equivalent to a EFA solution for the same data and same number of factors.  Catharina Hartmann provided an answer, originally due to Karl J&#246;reskog, and referencing <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#LawMax">Lawley and Maxwell</A>:</ADDRESS><P>
+
+J&#246;reskog indicated that, even if two solutions are equivalent [i.e.  the EFA solution vs the CFA unrestricted model so- lution], the chi-square from Lisrel will be slightly higher than the one in EFA because of different multiplicative factors in front of the ML fit function.  For example, <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#LawMax">Lawley and Maxwell (1971)</A>, pp. 35-36, provided the following multiplicative factor:<P>
+
+n-(2p+5)/6, where p=number of variables and n=N-1, N=number of observations<P>
+
+<ADDRESS>Roger Millsap replied:</ADDRESS>
+It turns out that Lawley and Maxwell had advocated a slightly different multiplier:<P>
+
+n-(2p+4r+5)/6  where r=number of factors<P>
+
+<H2><A NAME="irt">Item response theory</A></H2>
+
+For more information about Rasch modeling and/or item response theory (IRT), 
+there are two online sources to recommend.  The web site for the journal,
+<A HREF="http://mesa.spc.uchicago.edu/rmt/index.htm">Rasch Measurement Transactions</a>,
+includes the journal's past contents and instructions for subscribing to a listserv
+devoted to the Rasch approach.  A newer mailing list, maintained by R. J. Harvey, solicits more 
+general discussion of IRT.  To subscribe to the latter, send email with body:<p>
+
+subscribe IRT firstname lastname<P>
+
+to address <A href="mailto:listserv@listserv.vt.edu">listserv@listserv.vt.edu</a>.<p>
+
+<H2><A NAME="refs">References</A></H2>
+
+Bollen, K. A. & Ting, K. F. (1993).  Confirmatory tetrad analysis.  In P. Marsden (Ed.), <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#SocMeth">Sociological methodology</A> (pp. 147-175), Washington, DC:  American Sociological Association.<P>
+
+Chin, W.W. (1998). The partial least squares approach for structural equation modeling. In <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Marcou98">G.A. Marcoulides (Ed.)</A>, Modern methods for business research (pp. 295-336), Mahwah, NJ: Lawrence Erlbaum.<P>
+
+McDonald, R.P. (1996). Path analysis with composite variables. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#MBR">Multivariate Behavioral Research</A>, 31(2), 239-270.
+
+Schmidt McCollam, K.M. (1998). Latent trait and latent class models. In <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Marcou98">G.A. Marcoulides (Ed.)</A>, Modern methods for business research (pp. 23-46), Mahwah, NJ: Lawrence Erlbaum.<P>
+
+Spirtes, P., Glymour, C., & Scheines, R. (1993).  <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html">Causation, prediction and search</A>.  New York:  Springer-Verlag.<P>
+
+Ting, K. F. (1995).  Confirmatory tetrad analysis with SAS.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#SEMAMJ">Structural Equation Modeling</A>, 2(2), 163-171.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/relmeth.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  May 14, 1996</ADDRESS>
+
+</BODY>
+</HTML>

@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<title>Discrepancy Functions Used in SEM</title>
+</HEAD>
+<BODY>
+<h1>Discrepancy Functions Used in SEM</h1>
+
+<ADDRESS>(Most of this discussion is taken from <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#JS89">J&#246;reskog and S&#246;rbom (1989)</A>, pp. 21-24.)</ADDRESS>
+In SEM, the parameters of a proposed model are estimated by minimizing the discrepancy between the empirical covariance matrix, S, and a covariance matrix implied by the model, <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif">.  How should this discrepancy be measured?  This is the role of the discrepancy function.<p>
+
+<A NAME="mlglsuls"></A><H2>"Classical" Discrepancy Functions--ML, GLS, and ULS</H2>
+
+Much of the early excitement about SEM was due to <A HREF="#refs">J&#246;reskog's (1967)</A> development of a maximum likelihood (ML) discrepancy function:<P>
+
+<IMG WIDTH=427 HEIGHT=36 SRC="HTTP://www.gsu.edu/~mkteer/ml.gif"><p>
+
+where "|.|" indicates the determinant of a matrix, "tr" indicates the trace, and p is the total number of manifest variables (x and y)  in the model.  Utilizing the assumption of multivariate normality in the observed data, or equivalently, the assumption of a joint Wishart distribution among the elements of S, the ML discrepancy function yields asymptotically correct standard errors for the parameter estimates and an overall fit statistic that follows, asymptotically, a chi-square distribution when the model is correct in the population.<P>
+
+Alternatively, the Generalized Least Squares (GLS) discrepancy function:<P>
+
+<IMG WIDTH=248 HEIGHT=36 SRC="HTTP://www.gsu.edu/~mkteer/gls.gif"><p>
+
+yields results that are asymptotically equivalent to ML results.  In practice, researchers have observed differences between the implementations of the two functions, within the same software package, in terms of their robustness and the frequency of yielding convergence problems and improper solutions.  J&#246;reskog has indicated that the GLS discrepancy function ought to have a speed advantage over ML, but little difference has been observed in practice.<P>
+As Walt David has pointed out, one significant difference between the two discrepancy functions lies in the "scores" that they assign to "null models," that is, models which specify that all manifest variables are uncorrelated.  The ML and GLS discrepancy function values can vary wildly.  The result is that null model-based comparative fit indices will not behave consistently across these two estimation methods.<P>
+
+A less commonly used alternative in this group is the Unweighted Least Squares (ULS) discrepancy function:<P>
+
+<IMG WIDTH=203 HEIGHT=37 SRC="HTTP://www.gsu.edu/~mkteer/uls.gif"><p>
+
+This discrepancy function is analogous to OLS estimation in regression.  This function differs from the others in that it is not built on an assumption of multivariate normality in the data.  As a result, this discrepancy function does not, in itself, lead to estimated standard errors or an overall chi-square fit statistic.  However, some programs may provide those results by adopting the multivariate normality assumption after the fact.<P>
+
+<A NAME="adfwls"></A><H2>Asymptotically Distribution Free Discrepancy Functions (ADF/WLS)</H2>
+
+In seminal work, <A HREF="#refs">Browne (1982,1984)</A> demonstrated that the existing discrepancy functions were all, asymptotically, special cases of a generic discrepancy function:<P>
+
+<IMG WIDTH=292 HEIGHT=49 SRC="HTTP://www.gsu.edu/~mkteer/wls1.gif"><p>
+
+where "T" indicates transposition, W is a weight matrix, and:<P>
+
+<IMG WIDTH=348 HEIGHT=94 SRC="HTTP://www.gsu.edu/~mkteer/wls2.gif"><p>
+
+In words, the vectors in this function are lists of the unique or nonredundant elements of S and <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif">, respectively.<P>
+
+This discrepancy function defines F as a weighted sum of squared residuals (hence the label, "Weighted Least Squares," or WLS, in the LISREL package), just as in generalized regression.  As one might expect, a good estimate of W would be based on the covariance matrix of the residuals, but there are different ways to estimate that matrix.  The distinctions between different discrepancy functions were merely differences in the way W was estimated:<P>
+
+
+<TABLE BORDER>
+     <TR>
+          <TH>Discrepancy function</TH>
+          <TH>W derived as</TH>
+     </TR>
+     <TR>
+          <TD>ULS</TD>
+          <TD>Identity matrix</TD>
+     </TR>
+     <TR>
+          <TD>GLS</TD>
+          <TD>Function of elements of S</TD>
+     </TR>
+     <TR>
+          <TD>ML</TD>
+          <TD>Function of elements of <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif"></TD>
+     </TR>
+</TABLE>
+
+This means, among other things, that the ML weight matrix is effectively updated at each iteration in the estimation process, as the estimate of <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif"> changes, while the GLS weight matrix is not.<P>
+
+GLS and ML estimation capitalize on the tremendous simplification that is possible when data are multivariate normal.  When the distributional assumption is false, however, these discrepancy functions are, in effect, operating with incorrect weight matrices.<P>
+
+Browne suggested, for the more general case, an "asymptotically distribution free" (ADF) discrepancy function, where W is based on direct estimation of the fourth-order moments of the residuals.  This approach can be problematic, however.  Studies show that this approach only yields stable results in <STRONG>very</STRONG> large sample sizes (<A HREF="refs">Muth&#233;n and Kaplan, 1985, 1992</A>), so it is not widely used.  On the opther hand, <A HREF="refs">Yung and Bentler (1994)</A> recently suggested overcoming the sample size problem by using bootstrap methods to estimate the weight matrix.<P>
+
+<A NAME="refs"></A><H2>References</H2>
+Browne, M. W. (1982).  Covariance structures.  In D. M. Hawkins (Ed.), Topics in applied multivariate analysis (pp. 72-141).  Cambridge, UK:  Cambridge University.<P>
+
+Browne, M. W. (1984).  Asymptotically distribution-free methods for the analysis of covariance structures.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 37, 1-21.<P>
+
+J&#246;reskog, K. G. (1967).  Some contributions to maximum likelihood factor analysis.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#Psychometrika">Psychometrika</A>, 32(4), 443-482.<P>
+
+Muth&#233;n, B., & Kaplan, D. (1985).  A comparison of methodologies for the factor analysis of non-normal Likert variables.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 38, 171-189.<P>
+
+Muth&#233;n, B., & Kaplan, D. (1992).  A comparison of some methodologies for the factor analysis of non-normal Likert variables:  A note on the size of the model.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 45, 19-30.<P>
+
+Yung, Y.-F., & Bentler, P. M. (1994).  Bootstrap-corrected ADF test statistics in covariance structure analysis.  <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 47, 63-84.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/discrep.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  May 3, 1996</ADDRESS>
+
+</BODY>
+</HTML>

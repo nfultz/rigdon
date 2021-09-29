@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<title>Not Positive Definite Matrices--Causes and Cures</title>
+</HEAD>
+<BODY>
+<h1>Not Positive Definite Matrices--Causes and Cures</h1>
+
+The seminal work on dealing with not positive definite matrices is <A HREF="#Refs">Wothke (1993)</A>.  The chapter is both reabable and comprehensive.  This page uses ideas from  Wothke, from SEMNET messages, and from my own experience.<P>
+<H2>The Problem</H2>
+There are four situations in which a researcher may get a message about a matrix being "not positive definite."  The four situations can be very different in terms of their causes and cures.<P>
+
+First, the researcher may get a message saying that the input covariance or correlation matrix being analyzed is "not positive definite."  Generalized least squares <A HREF="HTTP://www.gsu.edu/~mkteer/discrep.html#mlglsuls">(GLS)</A> estimation requires that the covariance or correlation matrix analyzed must be positive definite, and maximum likelihood <A HREF="HTTP://www.gsu.edu/~mkteer/discrep.html#mlglsuls">(ML)</A> estimation will also perform poorly in such situations.  If the matrix to be analyzed is found to be not positive definite, many programs will simply issue an error message and quit.<P>
+
+Second, the message may refer to the asymptotic covariance matrix.  This is not the covariance matrix being analyzed, but rather a weight matrix to be used with asymptotically distribution-free / weighted least squares <A HREF="HTTP://www.gsu.edu/~mkteer/discrep.html#adfwls">(ADF/WLS)</A> estimation.<P>
+
+Third, the researcher may get a message saying that its estimate of Sigma (<IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif">), the model-implied covariance matrix, is not positive definite.  LISREL, for example, will simply quit if it issues this message.<P>
+
+Fourth, the program may indicate that some parameter matrix within the model is not positive definite.  This attribute is only relevant to parameter matrices that are variance/covariance matrices.  In the language of the LISREL program, these include the matrices Theta-delta, Theta-epsilon, Phi (<IMG SRC="HTTP://www.gsu.edu/~mkteer/phiuc.gif">) and Psi.  Here, however, this "error message" can result from correct specification of the model, so the only problem is convincing the program to stop worrying about it.<P>
+
+<H2>"Not Positive Definite"--What Does It Mean?</H2>
+
+Strictly speaking, a matrix is "positive definite" if all of its eigenvalues are positive.  Eigenvalues are the elements of a vector, e, which results from the decomposition of a square matrix S as:<P>
+
+S = e'Me<P>
+
+To an extent, however, we can discuss positive definiteness in terms of the sign of the "determinant" of the matrix.  The determinant is a scalar function of the matrix.  In the case of symmetric matrices, such as covariance or correlation matrices, positive definiteness wil only hold if the matrix and every "principal submatrix" has a positive determinant.  ("Principal submatrices" are formed by removing row-column pairs from the original symmetric matrix.)
+A matrix which fails this test is "not positive definite."  If the determinant of the matrix is exactly zero, then the matrix is "singular."  (Thanks to Mike Neale, Werner Wothke and Mike Miller for refining the details here.)<P>
+
+Why does this matter?  Well, for one thing, using GLS estimation methods involves inverting the input matrix.  Any text on matrix algebra will show that inverting a matrix involves dividing by the matrix determinant.  So if the matrix is singular, then inverting the matrix involves dividing by zero, which is undefined.  Using ML estimation involves inverting Sigma, but since the aim to maximize the similarity between the input matrix and Sigma, the prognosis is not good if the input matrix is not positive definite.  Now, some programs include the option of proceeding with analysis even if the input matrix is not positive definite--with Amos, for example, this is done by invoking the $nonpositive command--but it is unwise to proceed without an understanding of the reason why the matrix is not positive definite.  If the problem relates to the asymptotic weight matrix, the researcher may not be able to proceed with ADF/WLS estimation, unless the problem can be resolved.<P>
+
+In addition, one interpretation of the determinant of a covariance or correlation matrix is as a measure of "generalized variance."  Since negative variances are undefined, and since zero variances apply only to constants, it is troubling when a covariance or correlation matrix fails to have a positive determinant.<P>
+
+Another reason to care comes from mathematical statistics.  Sample covariance matrices are supposed to be positive definite.  For that matter, so should Pearson and polychoric correlation matrices.  That is because the population matrices they are supposedly approximating *are* positive definite, except under certain conditions.  So the failure of a matrix to be positive definite may indicate a problem with the input matrix.<P>
+
+<H2>Why is My Matrix Not Positive Definite, and What Can I Do About It?</H2>
+
+Properly, the question is, why does the matrix contain zero or negative eigenvalues.  However, it may be easier for many researchers to think about why the determinant is zero or negative?  Either way, there are many possibilities, and there are different possible solutions that go with each possible cause.<P>
+Further, there are other solutions which sidestep the problem without really addressing its cause.  These options carry potentially steep cost.  They are discussed separately, <A HREF="#Sidestep">below</A>.<P>
+
+<H3>Linear Dependency</H3>
+
+A not positive definite input covariance matrix may signal a perfect linear dependency of one variable on another.  For example, if a plant researcher had data on corn (maize) stalks, and two of the variables in the covariance matrix were "plant height" and "plant weight," the linear correlation between the two would be nearly perfect, and the covariance matrix would be not positive definite within sampling error.  It may be easier to detect such relationships by sight in a correlation matrix rather than a covariance matrix, but often these relationships are logically obvious.  Multivariate dependencies, where several variables together perfectly predict another variable, may not be visually obvious.  In those cases, sequential analysis of the covariance matrix, adding one variable at a time and computing the determinant, should help to isolate the problem.  (I would use a spreadsheet program for this, like Microsoft (TM) Excel (TM), for convenience.)<P>
+
+Dealing with this kind of problem involves changing the set of variables included in the covariance matrix.  If two variables are perfectly correlated with each other, then one may be deleted.  Alternatively, principal components may be used to replace a set of collinear variables with one or more orthogonal components.<P>
+
+In regard to the asymptotic weight matrix, the linear dependency exists not between variables, but between elements of the moments (the means and variances and covariances or the correlations) which are being analyzed.  This can occur in connection with modeling multiplicative interaction relationships between latent variables.  <A HREF="Refs">J&#246;reskog and Yang (1996)</A> show how moments of the interaction construct are linear functions of moments of the "main effect" constructs.  Their article explores alternative approaches for estimating these models<P>  
+
+<H3>Error Reading the Data</H3>
+
+If the problem is with your input matrix in particular, first make sure that the program has read your data correctly.  Remember, an empty covariance matrix (with no variables in it) is always not positive definite.  Try reading the data using another program, which will allow you to validate the covariance matrix estimated by the SEM program.  If you generated the covariance matrix with one program, and are analyzing it with another, make sure that the covariance matrix was read correctly.  This can be particularly problematic when the asymptotic weight matrix is the focus of the problem.<P>
+
+<H3>Typographical Error</H3>
+
+Whenever a covariance matrix is transcribed, there is a chance of error.  So if you just have the matrix (say, from a published article, but not the data itself, double-check for transcription errors.  Also remember that journals are not perfect, so a covariance matrix in an article may also contain an error.  In a recent case, for example, it appeared that the sign of a single (relatively large) coefficient was reversed at some point, and this reversal made the matrix not positive definite.  In that case, changing the sign of that one coefficient eliminated the problem.<P>
+
+<H3>Starting Values</H3>
+
+The model-implied matrix Sigma is computed from the model's parameter estimates.  Especially before iterations begin, those estimates may be such that Sigma is not positive definite.  So if the problem relates to Sigma, first make sure that the model has been specified correctly, with no syntax errors.  If the proposed model is "unusual," then the starting value routines that are incorporated into most SEM programs may fail.  Then it is up to the researcher to supply likely starting values.<P>
+
+<H3>Sampling Variation</H3>
+
+When sample size is small, a sample covariance or correlation matrix may be not positive definite due to mere sampling fluctuation.  As most matrices rapidly converge on the population matrix, however, this in itself is unlikely to be a problem.  <A HREF="#Refs">Anderson and Gerbing (1984)</A> documented how parameter matrices (Theta-Delta, Theta-Epsilon, Psi and possibly Phi) may be not positive definite through mere sampling fluctation.  Most often, such cases involve "improper solutions," where some variance parameters are estimated as negative.  In such cases, <A HREF="#Refs">Gerbing and Anderson (1987)</A> suggested that the offending estimates could be fixed to zero with minimal harm to the program.<P>
+
+Estimators of the asymptotic weight matrix converge much more slowly, so problems due to sampling variation can occur at much larger sample sizes <A HREF="Refs">(Muth&#233;n & Kaplan, 1985, 1992)</A>.  Using an asymptotic weight matrix with polychoric correlations appears to compound the problem. Where sampling variation is the issue, <A HREF="Refs">Yung and Bentler (1994)</A> have proposed a bootstrapping approach to estimating the asymptotic weight matrix, which may avoid the problem.<P>
+
+<H3>Missing Data</H3>
+
+Large amounts of missing data can lead to a covariance or correlation matrix not positive definite.  With simple replacement schemes, the replacement value may be at fault.  With pairwise deletion, the problem may arise precisely because each element of the covariance matrix is computed from a different subset of the cases <A HREF="#Refs">(Arbuckle, 1996)</A>. To check whether this is the cause, use a different missing data technique, such as a different replacement value, listswise deletion or (perhaps ideally) a maximum likelihood/<A HREF="HTTP://www.smallwaters.com/amos/emcov.html">EMCOV</A> simultaneous estimation method.<P>
+
+<H3>My Variable is a Constant!</H3>
+
+Sometimes, either through an error reading data or through the process of deleting cases that include missing data, it happens that some variable in a data set takes on only a single value.  In other words, one of the variables is actually a constant.  This variable will then have zero variance, and the covariance matrix will be not positive definite.  Simple tabulation of the data will provide a forewarning of this.  If this is the problem, either the researcher must choose a different missing-data strategy, or else the variable must be deleted.<P>
+
+<H3>Polychoric Correlations</H3>
+
+Programs that estimate polychoric correlations on a pairwise basis--one correlation at a time--may yield input correlation matrices that are not positive definite.  Here the problem occurs because the whole correlation matrix is not estimated simultaneously.  It appears that this is most likely to be a problem when the correlation matrix contains large numbers of variables.  Try computing a matrix of Pearson correlations and see whether the problem persists.<P>
+
+If the problem lies with the polychoric correlations, there may not be a good solution.  One approach is to use a program, like EQS, that includes the option of deriving all polychoric correlations simultaneously, rather than one at a time (cf., <A HREF="Refs">Lee, Poon & Bentler, 1992</A>).  But be warned--Joop Hox reports that the computational burden is enormous, and it increases exponentially with the number of variables.<P>
+
+Ed Cook has experimented with an eigenvalue/eigenvector decomposition approach.  If a covariance or correlation matrix is not positive definite, then one or more of its eigenvalues will be negative.  After decomposing the correlation matrix into eigenvalues and eigenvectors, Ed Cook replaced the negative eigenvalues with small (.05) positive values, used the new values to compute a covariance matrix, then standardized the resulting matrix (diving by the square root of the diagonal values) so that the result was again was a correlation matrix.  Ed reported that the bias resulting from this process appeared to be small.<P>
+
+<H3>No Error Variance</H3>
+
+Sometimes researchers specify zero elements on the diagonals of Theta-delta or Theta-epsilon.  A zero here implies no measurement error.  While it may seem unlikely, on reflection, that any latent variable could be measured without error, nevertheless the practice is common, when a construct has only a single measure.  Single measures often lead to <A HREF="HTTP://www.gsu.edu/~mkteer/identifi.html">identification</A> problems, and analysts may leave the parameter fixed at zero by default.  If a diagonal element is fixed to zero,  then the matrix will be not positive definite.  However, since this is precisely what the researcher intended to do, there is no cause for alarm.  The only problem is that these values may cause the solution to fail an "admissibility check," which may lead to premature termination of the iterative estimation process. In such cases, it is merely a matter of disabling the admissibility check.  In LISREL, for example, this is done by adding AD=OFF to the OUtput line.<P>
+
+<H3>Negative Error Variance</H3>
+
+Negative values on the diagonal are another matter.  Since the diagonal elements of these matrices are variance terms, negative values are unacceptable.  Further, since these error variances represent the "left-over" part of some variable, a negative error variance suggests that the regression has somehow explained <U>more</U> than 100 percent of the variance. In my own experience, these values are symptoms of a serious fit problem.  Comprehensive fit assessment will help the researcher to isolate the specific problem.<P>
+
+<A NAME="Sidestep"></A><H2>Sidestepping the Problem</H2>
+
+As with many problems, there are ways to sidestep this problem without actually trying to discern its cause.  Besides simply compelling the program to proceed with its analysis, researchers can make a ridge adjustment to the covariance or correlation matrix.  This involves adding some quantity to the diagonal elements of the matrix.  This addition has the effect of attenuating the estimated relations between variables.  A large enough addition is sure to result in a positive definite matrix.  The price of this adjustment, however, is bias in the parameter estimates, standard errors, and fit indices.  <A HREF="HTTP://www.gsu.edu/~mkteer/relmeth.html#pls">Partial least squares</A> methods may also proceed with no regard for the determinant of the matrix, but this involves an entirely different methodology.<P>
+
+<A NAME="Refs"></A><H2>References</H2>
+Anderson, J. C., & Gerbing, D. W. (1984). The effect of sampling error on convergence, improper solutions, and goodness-of-fit indices for maximum likelihood confirmatory factor analysis. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#Psychometrika">Psychometrika</A>, 49(2--June), 155-73.<P>
+
+Arbuckle, J. L. (1996). Full information estimation in the presence of incomplete data.  In <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#MarcSchum96">G. A. Marcoulides & R. E. Schumacker</A> (Eds.), Advanced structural equation modeling: Issues and techniques (pp. 243-78). Mahwah, NJ: Lawrence Erlbaum.<P>
+
+Gerbing, D. W., & Anderson, J. C. (1987). Improper solutions in the analysis of covariance structures: Their interpretability and a comparison of alternate respecifications. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#Psychometrika">Psychometrika</A>, 52(1--March), 99-111.<P>
+
+J&#246;reskog, K. G., & Yang F. [now Fan Yang Jonsson] (1996). Nonlinear structural equation models: The Kenny-Judd model with interaction effects. In <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#MarcSchum96">G. A. Marcoulides & R. E. Schumacker</A> (Eds.), Advanced structural equation modeling: Issues and techniques (pp. 57-88). Mahwah, NJ: Lawrence Erlbaum.<P>
+
+Lee, S.-Y., Poon, W.-Y., & Bentler, P. M. (1992). Structural equation models with continuous and polytomous variables. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#Psychometrika">Psychometrika</A>, 57(1--March), 89-105.<P>
+
+Muth&#233;n, B. & Kaplan, D. (1985). A comparison of some methodologies for the factor analysis of non-normal Likert variables. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 38, 171-89.<P>
+
+Muth&#233;n, B. & Kaplan, D. (1992). A comparison of some methodologies for the factor analysis of non-normal Likert variables: A note on the size of the model. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 45, 19-30.<P>
+
+Wothke, W. (1993). Nonpositive definite matrices in structural modeling. In <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#BollenLong93">K. A. Bollen & J. S. Long</A> (Eds.), Testing structural equation models (pp. 256-93). Newbury Park, CA: Sage.<P>
+
+Yung, Y.-F., & Bentler, P. M. (1994). Bootstrap-corrected ADF test statistics in covariance structure analysis. <A HREF="HTTP://www.gsu.edu/~mkteer/journals.html#British">British Journal of Mathematical and Statistical Psychology</A>, 47, 63-84.<P>
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/npdmatri.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  June 11, 1997</ADDRESS>
+
+</BODY>
+</HTML>

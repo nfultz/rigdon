@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<title>Factor Scores</title>
+</HEAD>
+<BODY>
+<h1>Factor Scores</h1>
+
+<ADDRESS>(Much of this page is taken from <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Bollen89">Bollen's (1989)</A> text, pp. 305-306.)</ADDRESS>
+One strength of the factor analytic measurement model is the ability to "purify" the measures by distinguishing between variance related to the common factor(s) and variance due to measurement error.  The question then arises, can the researcher use the measurement model to assign scores to individual cases or respondents on the factors?  For example, suppose a school headmaster develops a model of "teaching effectiveness,"based on data collected from the school's teachers.  Can the headmaster then use the model's parameter estimates, and the manifest variable scores, to derive "factor scores" for the purpose of grading teaching performance?<P>
+
+Bollen indicates that one way to approach the problem (although other approaches exist) is to set up a hypothetical regression of the common factors (<IMG SRC="HTTP://www.gsu.edu/~mkteer/xi.gif">) on the manifest variables:<P>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/facscor1.gif"><P>
+
+One may then estimate the "B" regression parameter in the usual way, as the ratio of the covariance of <IMG SRC="HTTP://www.gsu.edu/~mkteer/xi.gif"> and X over the variance of X.  This leads to the formula:<P>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/facscor2.gif"><P>
+
+where <IMG SRC="HTTP://www.gsu.edu/~mkteer/phiuc.gif"> is the covariance matrix of the common factors, <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdauc.gif"> is the matrix of loadings, <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif"> is the model-implied covariance matrix of the manifest variables, and ^ indicates that the matrices are based on estimated parameters.<P>
+
+Factor scores are problematic for several reasons.  Besides the existence of competing methods for deriving the scores, the principle of factor indeterminacy suggests that different rotations of the factor solution could lead to different factor scores.  While the different sets of factor scores that result may be highly correlated, there is no guarantee that the relative positions of the cases or individuals on the factor score continuum will be identical.<P>
+
+In addition, the measurement model indicates that the manifest variables are functions of both the common factors and the measurement error terms.  The factor score equation constructs the factor scores as weighted composites of the manifest variables.  Thus, the factor scores are also influenced by measurement error.  For this reason, a factor score should not be considered a perfect measure of the factor itself.<P>
+
+This dilemma highlights one of the relative strengths of <A HREF="HTTP://www.gsu.edu/~mkteer/relmeth.html#pls">partial least squares (PLS)</A>.  In PLS, the "latent variables" <STRONG>are</STRONG> weighted composites of the manifest variables.  So the PLS approach leads directly to explicit factor scores.  Some researchers and practitioners find this to be one of the most attractive features of PLS.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/facscore.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  May 7, 1996</ADDRESS>
+
+</BODY>
+</HTML>

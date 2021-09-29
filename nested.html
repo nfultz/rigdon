@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<title>Model Comparison in SEM</title>
+</HEAD>
+<BODY>
+<h1>Model Comparison in SEM</h1>
+
+Researchers in SEM, as in other areas, sometimes face the problem of choosing from among two or more competing models.  That is, there may be prior support for several alternative models, and the researcher wishes to select one "best" model.<P>
+
+As with the general problem of model selection in statistics, the choice of which procedure to use depends on whether or not the competing models are "nested" within one another.  In a loose sense, we can say that Model A is nested within model B if Model A is a special case of Model B.  Consider this situation:<P>
+
+<IMG WIDTH=364 HEIGHT=159 SRC="HTTP://www.gsu.edu/~mkteer/nested1.gif"><P>
+
+Here, a model that excludes the dashed path (or, equivalently, leaves that parameter fixed to 0 or some other specific value) would be nested within a more general model that includes the dashed path as a free parameter to be estimated.<P>
+
+When two models are nested, we know, from <A HREF="#refs">Steiger, Shapiro and Browne (1985)</A>, that the <STRONG>difference</STRONG> between their chi-square (<IMG SRC="HTTP://www.gsu.edu/~mkteer/chisquar.gif">) test satistics is asymptotically independent of the test statistics themselves.  Furthermore, if the original test statistics follow <A HREF="HTTP://www.gsu.edu/~mkteer/distribs.html#chisquare">chi-square distributions</A>, then the difference is also chi-square distributed.  If the original test statistics follow <A HREF="HTTP://www.gsu.edu/~mkteer/distribs.html#noncenchisquare">noncentral chi-square distributions</A>, then the difference is also noncentral chi-square distributed.  In either case,the degrees of freedom for the difference is equal to the difference in degrees of freedom for the two original test statistics.  (In the example above, the more general model has one less degree of freedom, so the degrees of freedom of the test statistic would be one.)  In addition, in the latter case, the noncentrality parameter for the difference is equal to the difference in the noncentrality parameters for the two original test statistics.<P>
+
+This suggests the most commonly used method for comparing the fit of two nested models.  Test the null hypothesis of no significant difference in fit by evaluating whether the chi-square difference is significant, for the given degrees of freedom and a chosen significance level.  If the difference is significant, then the null hypothesis is rejected.  While this approach is popular, it is limited to comparisons of nested models, and interpretation becomes difficult in the noncentral case.<P>
+
+<A NAME="refs"></A>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/nested.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  May 8, 1996</ADDRESS>
+
+</BODY>
+</HTML>

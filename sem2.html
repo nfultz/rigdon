@@ -1,0 +1,88 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<HTML>
+
+<HEAD>
+
+<TITLE>The Form of Structural Equation Models</TITLE>
+
+<META NAME="GENERATOR" CONTENT="Internet Assistant for Word 1.00">
+<META NAME="AUTHOR" CONTENT="Edward E. Rigdon">
+</HEAD>
+
+<BODY>
+
+<H1>The Form of Structural Equation Models</H1>
+
+Structural equation modeling incorporates several different approaches or frameworks to representing these models.  In one well-known framework (popularized by Karl J&#246;reskog, University of Uppsala), the general structural equation model can be represented by three matrix equations:<P>
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/matrixeq.gif" WIDTH=674 HEIGHT=165><P>
+
+However, in applied work, structural equation models are most often represented <STRONG>graphically</STRONG>. Here is a graphical example of a structural equation model:<P>
+
+<A NAME="pathmodel"></A><A HREF="/cgi-bin/imagemap/~mkteer/semfig.map">
+<IMG ALT="Diagram of a structural equation model here" ALIGN=MIDDLE WIDTH=754 HEIGHT=534
+src="semfig3.gif" ISMAP> </A> 
+<P>
+For more information, click on an element of this diagram, or choose from this list:<BR>
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#latentvar">Latent Constructs</A> |
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#gammabeta">Structural Model</A> |
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#structerr">Structural Error</A> |
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#manifestvar">Manifest Variables</A> |
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#loading">Measurement Model</A> |
+<A HREF="HTTP://www.gsu.edu/~mkteer/sem2.html#measerr">Measurement Error</A> |
+<P>
+This diagram uses the dominant symbolic language in the SEM world.
+However, there are alternate forms, including the &quot;
+<A HREF="http://www.gsu.edu/~mkteer/ram.html">RAM</A>,&quot;
+reticular action model. <HR>
+
+<H2><A NAME="latentvar">Latent Constructs</A></H2>
+In structural equation modeling, the key variables of interest are usually "latent constructs"--abstract psychological concepts such as "intelligence" or "attitude."  We can observe the behavior of latent variables only indirectly, and imperfectly, through their effects on manifest variables.<p>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/ksi.gif" ALIGN=LEFT WIDTH=68 HEIGHT=48 ALT="Ksi" HSPACE=10>A structural equation model may include two types of latent constructs--exogenous and endogenous.  In the most traditional system, exogenous constructs are indicated by the Greek character "ksi" (<VAR>at left</VAR>)<p>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/eta.gif" ALIGN=RIGHT WIDTH=68 HEIGHT=48 ALT="Eta" HSPACE=10>and endogenous constructs are indicated by the Greek character "eta" (<VAR>at right</VAR>).  These two types of constructs are distinguished on the basis of whether or not they are dependent variables in any equation in the system of equations represented by the model. Exogenous constructs are independent variables in all equations in which they appear, while endogenous constructs are dependent variables in at least one equation--although they may be independent variables in other equations in the system.  In graphical terms, each endogenous construct is the target of at least one one-headed arrow, while exogenous constructs are only targeted by two-headed arrows.<p>
+
+<H2><A NAME="gammabeta">Structural Model</A></H2>
+In SEM, the structural model includes the relationships among the latent constructs.  These relationships are chiefly linear, although flexible extensions to the basic SEM system allow for the inclusion of nonlinear relations, as well.  In the diagram, one-headed arrows represent regression relationships, while two-headed arrows represent correlational relations--that is, shared variation that is not explained within the model.<P>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/gamma.gif" ALIGN=LEFT WIDTH=41 HEIGHT=33 HSPACE=10 ALT="gamma">
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/beta.gif" ALIGN=RIGHT WIDTH=46 HEIGHT=46 HSPACE=10 ALT="beta">
+Parameters representing regression relations between latent constructs are typically labeled with the Greek character "gamma" (<I>at left</I>) for the regression of an endogenous construct on an exogenous construct, or with the Greek character "beta" (<I>at right</I>) for the regression of one endogenous construct on another endogenous construct.<P>
+
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/phi.gif" ALIGN=LEFT WIDTH=48 HEIGHT=44 HSPACE=10 ALT="phi">Typically in SEM, exogenous constructs are allowed to covary freely.  Parameters labeled with the Greek character "phi" (<I>at left</I>) represent these covariances.  This covariance comes from common predictors of the exogenous constructs which lie outside the model under consideration.<P>
+
+<H2><A NAME="structerr">Structural Error</A></H2>
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/zeta.gif" ALIGN=RIGHT WIDTH=36 HEIGHT=38 HSPACE=10 ALT="zeta">Few SEM researchers expect to perfectly predict their dependent constructs, so model typically include a structural error term, labeled with the Greek character "zeta" (<I>at right</I>).  To achieve consistent parameter estimation, these error terms are assumed to be uncorrelated with the model's exogenous constructs.  (Violations of this assumption come about as a result of the 
+<A HREF="HTTP://www.gsu.edu/~mkteer/excluded.html">excluded predictor problem</A>.)
+  However, structural error terms may be modeled as being correlated with other structural error terms.  Such a specification indicates that the endogenous constructs associated with those error terms share common variation that is not explained by predictor relations in the model.<P>
+
+<H2><A NAME="manifestvar">Manifest Variables</A></H2>
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/x.gif" ALIGN=LEFT WIDTH=46 HEIGHT=43 HSPACE=10 ALT="X">
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/y.gif" ALIGN=RIGHT WIDTH=46 HEIGHT=43 HSPACE=10 ALT="Y">
+SEM researchers use manifest variables--that is, actual measures and scores--to ground their latent construct models with real data.  Manifest variables associated with exogenous constructs are labeled X, while those associated with endogenous constructs are labeled Y.  Otherwise, there is no fundamental distinction between these measures, and a measure that is labeled X in one model may be labeled Y in another.<P>
+
+<H2><A NAME="loading">Measurement Model</A></H2>
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/measmod.gif" ALIGN=LEFT WIDTH=271 HEIGHT=126 HSPACE=10 ALT="factor analytic measurement model">
+In SEM, each latent construct is usually associated with multiple measures.  SEM researchers most commonly link the latent constructs to their measures through a factor analytic measurement model.  That is, each latent construct is modeled as a common factor underlying the associated measures.  These "loadings" linking constructs to measures are labeled with the Greek character "lambda" (<I>at left</I>).  Structural equation models can include two separate "lambda matrices, one on the X side and one on the Y side.  In SEM applications, the most common measurement model is the congeneric measurement model, where each measure is associated with only one latent construct, and all covariation between measures is a consequence of the relations between measures and constructs.<P>
+
+(Sometimes, however, it makes more sense to model a latent construct as the result or 
+<STRONG>consequence</STRONG> of its measures.  This is the 
+<A HREF="HTTP://www.gsu.edu/~mkteer/causind.html">causal indicators</A> model.  This alternative measurement model is also central to <A HREF="http://www.gsu.edu/~mkteer/relmeth.html#pls">Partial Least Squares</A>, a methodology related to SEM.)<P>
+
+<H2><A NAME="measerr">Measurement Error</A></H2>
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/delta.gif" ALIGN=LEFT WIDTH=36 HEIGHT=39 HSPACE=10 ALT="delta">
+<IMG SRC="HTTP://www.gsu.edu/~mkteer/epsilon.gif" ALIGN=RIGHT WIDTH=38 HEIGHT=35 HSPACE=10 ALT="epsilon">
+SEM users typically recognize that their measures are imperfect, and they attempt to model this imperfection.  Thus, structural equation models include terms representing measurement error.  In the context of the factor analytic measurement model, these measurement error terms are uniquenesses or unique factors associated with each measure.  Measurement error terms associated with X measures are labeled with the Greek character "delta" (<I>at left</I>) while terms associated with Y measures are labeled with "epsilon" (<I>at right</I>).  Conceptually, almost every measure has an associated error term.  In other words, almost every measure is acknowledged to include some error.<P>
+However, when a construct is associated with only a single measure, it is usually impossible (due to the limits of 
+<A HREF="HTTP://www.gsu.edu/~mkteer/identifi.html">identification</A>) to estimate the amount of measurement error within the model.  In such cases, the researcher must prespecify the amount of measurement error before attempting to estimate model parameters.  In this situation, researchers may be tempted to simply assume that there is no measurement error.  However, if this assumption is false, then model parameter estimates will be biased.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/sem2.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  April 11, 1996</ADDRESS>
+
+
+</BODY>
+
+</HTML>

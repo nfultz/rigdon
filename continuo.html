@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<title>Important Continuous Statistical Distributions in SEM</title>
+</HEAD>
+<BODY>
+<h1>Important Continuous Statistical Distributions</h1>
+
+Much of the distributional theory that underlies SEM today is built upon a handful of continuous statistical distributions--some well known, and some less so.  All of these distributions are, in turn, related to each other.  Any good advanced statistical text can provide details on the distributions discussed here.<P>
+
+<H2>Topics:</H2>
+
+<UL>
+<LI><A HREF="#normal">normal</A> distribution
+<LI><A HREF="#mvn">multivariate normal</A> distribution
+<LI><A HREF="#cennoncen">central and noncentral</A> distributions
+<LI><A HREF="#elliptical">elliptical</A> distribution
+<LI><A HREF="#chisq">chi-square</A> distribution
+<LI><A HREF="#Wishart">Wishart</A> distribution
+</UL>
+
+<A NAME="normal"></A><H2>Normal Distribution</H2>
+
+The normal, or Gaussian, distribution is one of the most familiar in statistics, endeared to statisticians by its simplicity and by virtue of the Central Limit Theorem (which states that a sample mean will follow an approximately normal distribution, if sample size is large enough, even if the data themselves are not normally distributed).  The normal distribution has two parameters, one representing the mean of the variable and one representing the variance.  The distribution is unimodal and symmetric about the mean.  The standard normal distribution, which constrains the mean to 0 and the variance to 1, is probably the most widely known statistical distribution.  The normal distribution also lies at the root of many other continuous statistical distributions.<P>
+
+One peculiar feature of the normal distribution is that it is completely described by its first two moments--higher order moments provide no new information about the distribution.  This feature has both good and bad consequences.  On the good side, statistical derivations involving the normal distribution are very much simplified, since higher order moments can be ignored.  On the bad side, normal distributions increase the likelihood that the parameters of statistical models will not be <A HREF="HTTP://www.gsu.edu/~mkteer/identifi.html">identified</A>, because there will be relatively few pieces of distinct information--fewer "knowns"--available for this purpose (<A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#BMW">Bekker, Merckens and Wansbeek, 1994</A>).<P>
+
+<A NAME="mvn"></A><H2>Multivariate Normal Distribution</H2>
+
+The multivariate normal, or spherical, distribution, is a generalization of the normal.  Its parameters include not only the means and variances of the individual variables but also the correlations between those variables.  Note that the multivariate normal distribution is not a mere composite of univariate normal distributions.  Even if every variable in a set is normally distributed, it is still possible that the combined distribution is NOT multivariate normal.  Therefore, to test for multivariate normality, researchers must compute multivariate measures of skewness and kurtosis.  For this purpose, a coefficient of multivariate kurtosis due to <A HREF="#refs">Mardia (1970, 1985)</A> is widely recommended.  Many SEM software packages, which process raw data, compute this statistic.<P>
+ 
+<A NAME="cennoncen"></A><H2>Central and Noncentral Distributions</H2>
+
+A (univariate) normally distributed variable may have either a zero mean or a nonzero mean.  If the mean is zero, then we may say that the variable follows a central normal distribution.  If the mean is nonzero, then the variable follows a noncentral distribution.  At this level, the difference may be unimportant to the SEM researcher.  However, when normally distributed variables are transformed, giving rise to other distributions, then the difference become significant.  Central normal variables give rise to central distributions, while noncentral normal variables give rise to noncentral distributions.  The resulting noncentral distributions are characterized by one additional parameter--a noncentrality parameter.<P>
+
+<A NAME="elliptical"></A><H2>Elliptical Distribution</H2>
+
+The normal distribution is a special case within the family of elliptical distributions.  Elliptical distributions are symmetric and unimodal, but are not constrained regarding kurtosis.  Thus, elliptical distributions themselves can be thought of as an intermediate point between the normal distribution and the general continuous distribution described in <A HREF="#refs">Browne's (1982)</A> work on asymptotically distribution-free (ADF) estimation.  Bentler's EQS package includes estimators specifically designed to be appropriate for elliptical distributions.<P>
+
+<A NAME="chisq"></A><H2>Chi-Square Distribution</H2>
+
+The chi-square distribution is a univariate distribution which results when univariate-normal variables are squared, and possibly summed.  While the normal distribution is symmetric, the chi-square distribution is skewed to the right, and has a minimum of 0.  The degrees of freedom of the resulting chi-square distribution are equal to the number of variables that are summed.  The mean of a chi-square distribution is equal to its degrees of freedom, and the variance is equal to twice the degrees of freedom.<P>
+
+These chi-square distributions are themselves additive.  That is, a chi-square-distributed variable with d1 degrees of freedom can be added to one with d2 degrees of freedom to yield a chi-square-distributed variable with d1 + d2 degrees of freedom, as long as the two added variables are independent.  Analogous results can be obtained by subtraction, under the same condition.  <A HREF="#refs">Steiger, Shapiro and Browne (1985)</A> showed that the independence condition was achieved for <I>a priori</I>-specified comparisons of the chi-square statistics from <A HREF="HTTP://www.gsu.edu/~mkteer/nested.html#nested">nested</A> models.  This gives rise to the familiar chi-square difference test.<P>
+
+As noted above, if some or all of the original normal variables had nonzero mean, then the result will be a noncentral chi-square distribution, with noncentrality parameter <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8> (lambda).  The mean of this distribution is equal to df + <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>, and the variance is equal to 2df + 4<IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>.  The effect of the noncentrality parameter is to move the distribution to the right and to make it appear flatter and more symmetrical.  Adding two independent noncentral chi-square distributed variables with noncentrality parameters <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>1 and <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>2 yields a noncentral chi-square distributed variable with noncentrality parameter (<IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>1 + <IMG SRC="HTTP://www.gsu.edu/~mkteer/lambdalc.gif" WIDTH=7 Height=8>2). In principle, nested models can also be evaluated using difference tests, but the noncentrality issue complicates interpretation.<P>
+
+<A NAME="Wishart"></A><H2>Wishart Distribution</H2>
+
+<ADDRESS>This section is largely drawn from <A HREF="#refs">Arnold (1988)</A>.</ADDRESS>
+The Wishart distribution is the multivariate analog to the chi-square, and is related to the multivariate normal in the same way that the chi-square is related to the univariate normal.  Both central and noncentral Wishart distributions have been defined.  As <A HREF="HTTP://www.gsu.edu/~mkteer/bookfaq.html#Bollen">Bollen (1989)</A>, for example, notes, to say that certain <A HREF="HTTP://www.gsu.edu/~mkteer/discrep.html">discrepancy functions</A> in SEM rely on multivariate normality in the data is really too restrictive.  The essential requirement is that the covariance matrix of the data follow the (central) Wishart distribution.  That is why Browne (1982) referred to the maximum likelihood estimation method as "maximum Wishart likelihood" or MWL.<P>
+
+If the covariance matrix, <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif">, is nonsingular, and if sample size exceeds the number of variables, then W, a matrix related to <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif">, will also be nonsingular.  This is critical to deriving confidence intervals for <IMG SRC="HTTP://www.gsu.edu/~mkteer/sigmauc.gif"> and for simple, partial and multiple correlations.<P>
+
+<A NAME="refs"></A><H2>References</H2>
+
+Arnold, S. F. (1988).  Wishart distribution.  In S. Kotz & N. L. Johnson (eds.-in-chief), Encyclopedia of statistical sciences (vol. 9), pp. 641-645.  New York:  Wiley.
+
+Mardia, K. V. (1985).  Mardia's test of multinormality.  In S. Kotz & N. L. Johnson (Eds. in chief), Encyclopedia of statistical sciences (vol. 5), pp. 217-221.  New York:  Wiley.<P>
+
+Mardia, K. V. (1970).  Measures of multivariate skewness and kurtosis with applications.  Biometrika, 57, pp. 519-530.<P>
+
+<HR>
+<ADDRESS>http://www.gsu.edu/~mkteer/continuo.html</ADDRESS>
+Return to the <A HREF="http://www.gsu.edu/~mkteer/semfaq.html"> SEMNET FAQ</A> home page.<BR>
+Return to  <A HREF="http://www.gsu.edu/~mkteer/index.html">Ed Rigdon's</A> home page.<BR>
+<ADDRESS>Last updated:  May 9, 1996</ADDRESS>
+
+</BODY>
+</HTML>
